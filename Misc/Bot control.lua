@@ -8,7 +8,7 @@
 
 ]]--
 
-local controler = "SeasonalKirito" -- Have full username
+local controller = "SeasonalKirito" -- Have full username
 
 local bots = { -- Have full alts username
     "kusdyz",
@@ -27,7 +27,7 @@ getgenv().spam = false
 getgenv().follow = false
 getgenv().swarm = false
 local TeleportService = game:GetService("TeleportService")
-local cmds = "\n.bring, brings every alt to the players position\n.goto [displayName], goes to the specified player using diplayname\n.autoBring, bring the bots automaticly to the controler\n.unAutoBring, stop the alts from teleporting to you with .autoBring\n.message [string], this take every alt and messages the second argument you input\n.bang [string], bangs the user\n.unbang, stops the bang remote\n.spam [message], spams the message in chat\n.unspam, stops the .spam remotes\n.whosGod?, it will say god name <aka daddy seasonal>\n.reset, resets the alt\n.shutdown, closes the game for the alts\n .follow [string], follows the user with all the alts\n.unFollow, stop following the person with the alts\n.swarm [string], swarms the person with the alts\n.unSwarm, stops swarming the play used with .swarm\n\nGot any ideas, join the discord to reccomend"
+local cmds = "\n.bring, brings every alt to the players position\n.goto [displayName], goes to the specified player using diplayname\n.autoBring, bring the bots automaticly to the controller\n.unAutoBring, stop the alts from teleporting to you with .autoBring\n.message [string], this take every alt and messages the second argument you input\n.bang [string], bangs the user\n.unbang, stops the bang remote\n.spam [message], spams the message in chat\n.unspam, stops the .spam remotes\n.whosGod?, it will say god name <aka daddy seasonal>\n.reset, resets the alt\n.shutdown, closes the game for the alts\n .follow [string], follows the user with all the alts\n.unFollow, stop following the person with the alts\n.swarm [string], swarms the person with the alts\n.unSwarm, stops swarming the play used with .swarm\n\nGot any ideas, join the discord to reccomend"
 
 
 
@@ -39,11 +39,11 @@ end
 
 if table.find(bots, lplr.Name) then
 
-    chat("Alt Loaded, Controler is: "..controler)
-    lplr.Character.HumanoidRootPart.CFrame = plrs[controler].Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -3)
-	plrs[controler].Chatted:connect(function(msg)
+    chat("Alt Loaded, controller is: "..controller)
+    lplr.Character.HumanoidRootPart.CFrame = plrs[controller].Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -3)
+	plrs[controller].Chatted:connect(function(msg)
         if msg == ".bring" then -- bring
-            lplr.Character.HumanoidRootPart.CFrame = plrs[controler].Character.HumanoidRootPart.CFrame
+            lplr.Character.HumanoidRootPart.CFrame = plrs[controller].Character.HumanoidRootPart.CFrame
         elseif string.find(tostring(msg), '.goto') then -- goto
             local String = msg:gsub('.goto ', '')
             for i,v in pairs(plrs:GetChildren()) do
@@ -58,7 +58,7 @@ if table.find(bots, lplr.Name) then
             getgenv().autoBring = true
             while getgenv().autoBring do
                 task.wait()
-                lplr.Character.HumanoidRootPart.CFrame = plrs[controler].Character.HumanoidRootPart.CFrame
+                lplr.Character.HumanoidRootPart.CFrame = plrs[controller].Character.HumanoidRootPart.CFrame
             end
         elseif msg == ".unAutoBring" then -- unAutoBring
             getgenv().autoBring = false
@@ -189,11 +189,11 @@ if table.find(bots, lplr.Name) then
             end
             char.HumanoidRootPart.CFrame = plrs[String].Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
             task.wait(0.2)
-            char.HumanoidRootPart.CFrame = plrs[controler].Character.HumanoidRootPart.CFrame
+            char.HumanoidRootPart.CFrame = plrs[controller].Character.HumanoidRootPart.CFrame
         end
     end)
 
-elseif lplr.Name == controler then
+elseif lplr.Name == controller then
 
     chat("Main Loaded, type .cmds to view commands")
     lplr.Chatted:connect(function(msg)
