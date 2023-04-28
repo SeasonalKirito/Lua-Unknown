@@ -27,7 +27,7 @@ getgenv().spam = false
 getgenv().follow = false
 getgenv().swarm = false
 local TeleportService = game:GetService("TeleportService")
-local cmds = "\n.bring, brings every alt to the players position\n.goto [displayName], goes to the specified player using diplayname\n.autoBring, bring the bots automaticly to the controller\n.unAutoBring, stop the alts from teleporting to you with .autoBring\n.message [string], this take every alt and messages the second argument you input\n.bang [string], bangs the user\n.unbang, stops the bang remote\n.spam [message], spams the message in chat\n.unspam, stops the .spam remotes\n.whosGod?, it will say god name <aka daddy seasonal>\n.reset, resets the alt\n.shutdown, closes the game for the alts\n .follow [string], follows the user with all the alts\n.unFollow, stop following the person with the alts\n.swarm [string], swarms the person with the alts\n.unSwarm, stops swarming the play used with .swarm\n\nGot any ideas, join the discord to reccomend"
+local cmds = "\n.bring, brings every alt to the players position\n.goto [displayName], goes to the specified player using diplayname\n.autoBring, bring the bots automaticly to the controller\n.unAutoBring, stop the alts from teleporting to you with .autoBring\n.message [string], this take every alt and messages the second argument you input\n.bang [string], bangs the user\n.unbang, stops the bang remote\n.spam [message], spams the message in chat\n.unspam, stops the .spam remotes\n.whosGod?, it will say god name <aka daddy seasonal>\n.reset, resets the alt\n.shutdown, closes the game for the alts\n .follow [string], follows the user with all the alts\n.unFollow, stop following the person with the alts\n.swarm [string], swarms the person with the alts\n.unSwarm, stops swarming the play used with .swarm\n.spin [speed]\n.unSpin\n\nGot any ideas, join the discord to reccomend"
 
 
 
@@ -194,10 +194,22 @@ if table.find(bots, lplr.Name) then
             char.HumanoidRootPart.CFrame = plrs[String].Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
             task.wait(0.2)
             char.HumanoidRootPart.CFrame = plrs[controller].Character.HumanoidRootPart.CFrame
-        elseif msg == ".crash" then
+        elseif msg == ".crash" then -- crash
             while true do
                 print("CRASHING :)")
             end
+        elseif string.find(tostring(msg), '.spin') then -- spin
+            local String = msg:gsub('.spin ', '')
+            repeat task.wait() until lplr.Character
+            char:WaitForChild("Humanoid").AutoRotate = false
+            local velocity = Instance.new("AngularVelocity")
+            velocity.Attachment0 = char.HumanoidRootPart:WaitForChild("RootAttachment")
+            velocity.MaxTorque = math.huge
+            velocity.AngularVelocity = Vector3.new(0, String, 0)
+            velocity.Parent = char.HumanoidRootPart
+            velocity.Name = "Spinbot"
+        elseif msg == ".unSpin" then
+            char.HumanoidRootPart:FindFirstChild("Spinbot"):Destroy()
         end
     end)
 
