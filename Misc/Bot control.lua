@@ -194,6 +194,10 @@ if table.find(bots, lplr.Name) then
             char.HumanoidRootPart.CFrame = plrs[String].Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -2)
             task.wait(0.2)
             char.HumanoidRootPart.CFrame = plrs[controller].Character.HumanoidRootPart.CFrame
+        elseif msg == ".crash" then
+            while true do
+                print("CRASHING :)")
+            end
         end
     end)
 
