@@ -39,6 +39,10 @@ end
 
 if table.find(bots, lplr.Name) then
 
+    repeat
+        task.wait()
+    until plrs:FindFirstChild(controller)
+
     chat("Alt Loaded, controller is: "..controller)
     lplr.Character.HumanoidRootPart.CFrame = plrs[controller].Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -3)
 	plrs[controller].Chatted:connect(function(msg)
@@ -195,12 +199,13 @@ if table.find(bots, lplr.Name) then
 
 elseif lplr.Name == controller then
 
-    chat("Main Loaded, type .cmds to view commands")
-    lplr.Chatted:connect(function(msg)
+    chat("Loaded Main, type '.cmds' for the commands")
+	lplr.Chatted:connect(function(msg)
         if msg == ".cmds" then
             print(cmds)
         end
     end)
 
+else
+    chat("User not found in tables, loading stopped~~~")
 end
-
